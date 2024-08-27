@@ -64,3 +64,19 @@
 - view : function 밖의 변수들을 읽을수 있으나 변경 불가능
 - pure : function 밖의 변수들을 읽지 못하고, 변경도 불가능
 - viwe 와 pure 둘다 명시 안할때: function 밖의 변수들을 읽어서, 변경을 해야함.(이 정의된 현재 이 컨트랙을 상속받은 자식 컨트랙도 접근가능)
+
+## 스토리지와 메모리
+
+- storage : 대부분의 변수, 함수들이 저장되며, 영속적으로 저장이되어 가스 비용이 비싸요
+- memory: 함수의 파라미터, 리턴값, 레퍼런스 타입이 주로 저장이 됩니다.
+  그러나, storage 처럼 영속적이지 않고, 함수내에서만 유효하기에 storage보다 가스 비용이 싸답니다.
+- Colldata : 주로 external function 의 파라메터에서 사용 됩니다.
+- stack: EVM (Ethereum Virtual Machine) 에서 stack data를 관리할때 쓰는 영역인데 1024Mb 제한적입니다.(이 컨트랙을 상속받은 자식 컨트랙도 접근가능)
+
+## String
+
+    function get_string( string memory _str ) public pure returns( string memory ){
+        return _str;
+    }
+
+- 문자열은 기본 타입이 아님으로 매개변수나 리턴 타입으로 사용할 때 memory를 적어줘야 한다.
