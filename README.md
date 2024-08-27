@@ -47,3 +47,11 @@
         function changeA3() public view returns(uint256){
             return a;
         }
+
+
+## 접근 제어자
+
+- public : 모든곳에서 접근 간으
+- external : public 처럼 모든 곳에서 접근 가능하나, exteranal 이 정의된 자기자신의 스마트컨트랙 접근 불가
+- private: 오직 private이 정의된 자기자신의 스마트컨트랙에서만 가능( private이 정의된 현재 이 컨트랙을 상속받은 자식 컨트랙도 접근불가)
+- interal : private 처럼 오직 internal이 정의된 자기자신의 스마트컨트랙에서도 가능( internal이 정의된 현재 이 컨트랙을 상속받은 자식 컨트랙도 접근가능) 
