@@ -89,13 +89,12 @@
 - new 키워드를 붙여서 인스턴스를 생성한다.
 - 인스턴스를 contract와 별개이다
 
-
 ## constructor
 
     constructor(string memory _name, uint256 _age) {
         name = _name;
         age = _age;
-    }   
+    }
 
 - contract가 처음 배포 될 시에 한번만 호출된다.
 - contract의 초기 상태를 설정할 떄 사용된다.
@@ -103,4 +102,41 @@
 ### constructor와 funtion의 차이
 
 - constructor는 contract의 초기상태를 설정할 떄 사용되지만 function은 contract가 배포된 이후 상태 변수를 변경하는데 사용된다.
-- constructor는 contract가 배포될 때 자동으로 호출되지만 배포 후에는 다시 호출 할 수 없다. 하지만 fuction은 contract가 배포된 후 누구나 호출할 수 있다. 
+- constructor는 contract가 배포될 때 자동으로 호출되지만 배포 후에는 다시 호출 할 수 없다. 하지만 fuction은 contract가 배포된 후 누구나 호출할 수 있다.
+
+## 상속
+
+    // constructor가 없을때
+    contract Father{
+        string public givenName = "Jung";
+
+        function getGivenName() view public  returns(string memory){
+            return givenName;
+        }
+
+    }
+
+    contract Son is Father{
+
+    }
+
+
+    //constructor가 있을때
+    contract Father{
+        string public givenName = "Jung";
+
+        constructor(string memory _givenName) public {
+            givenName = _givenName;
+        }
+
+        function getGivenName() view public  returns(string memory){
+            return givenName;
+        }
+
+    }
+
+    contract Son is Father("James"){
+
+    }
+
+- 부모 계약을 자식 계약이 물려받는다.
