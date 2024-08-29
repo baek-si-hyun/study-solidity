@@ -140,3 +140,28 @@
     }
 
 - 부모 계약을 자식 계약이 물려받는다.
+
+
+## 오버라이딩
+
+    contract Father{
+        uint256 public fatherMoney = 100;
+        function getFatherName() public pure returns(string memory){
+            return "KimJung";
+        }
+        
+        function getMoney() public view virtual returns(uint256){
+            return fatherMoney;
+        }
+        
+    }
+
+    contract Son is Father {
+
+        function getMoney() public view override(Father,Mother) returns(uint256){
+            return fatherMoney+motherMoney;
+        }
+    }
+
+- 오버라이딩 할 때 부모에 있는 오버라이딩 요소는 virtual 키워드를 추가해 줘야한다.
+- 오버라이팅 할 때 자식에 있는 오버라이팅 요소는 override 함수를 추가해 줘야한다.
