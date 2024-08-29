@@ -1,33 +1,42 @@
 // SPDX-License-Identifier:GPL-30
 pragma solidity >= 0.7.0 < 0.9.0;
 
-
 contract Father{
-    uint256 public fatherMoney = 100;
-    function getFatherName() public pure returns(string memory){
-        return "KimJung";
+    
+    string public familyName = "Kim";
+    string public givenName = "Jung";
+    uint256 public money = 100; 
+    
+    constructor(string memory _givenName) public {
+        givenName = _givenName;
     }
     
-    function getMoney() public view virtual returns(uint256){
-        return fatherMoney;
+    
+    function getFamilyName() view public  returns(string memory){
+        return familyName;
+    } 
+    
+    function getGivenName() view public  returns(string memory){
+        return givenName;
+    } 
+    
+    function getMoney() view  public virtual returns(uint256){
+        return money;
     }
+    
     
 }
 
-contract Mother{
-    uint256 public motherMoney = 500;
-    function getMotherName() public  pure returns(string memory){
-        return "Leesol";
+contract Son is Father("James"){
+    
+    
+    uint256 public earning = 0;
+    function work() public {
+        earning += 100;
     }
-    function getMoney() public view virtual returns(uint256){
-        return motherMoney;
+    
+     function getMoney() view  public override returns(uint256){
+        return money+earning;
     }
-}
 
-
-contract Son is Father, Mother {
-
-    function getMoney() public view override(Father,Mother) returns(uint256){
-        return fatherMoney+motherMoney;
-    }
 }
